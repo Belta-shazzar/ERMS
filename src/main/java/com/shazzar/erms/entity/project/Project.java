@@ -1,6 +1,7 @@
 package com.shazzar.erms.entity.project;
 
 import com.shazzar.erms.entity.employee.Team;
+import com.shazzar.erms.entity.project.enumerations.ProjectStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -31,8 +32,8 @@ public class Project {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus status;
 
     @Column(nullable = false)
     private BigDecimal budget;

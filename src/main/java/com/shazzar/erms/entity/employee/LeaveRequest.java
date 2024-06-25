@@ -1,5 +1,7 @@
 package com.shazzar.erms.entity.employee;
 
+import com.shazzar.erms.entity.employee.enumerations.LeaveStatus;
+import com.shazzar.erms.entity.employee.enumerations.LeaveType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -17,8 +19,11 @@ public class LeaveRequest {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private String leaveType;
+    @Enumerated(EnumType.STRING)
+    private LeaveType leaveType;
+
+    @Enumerated(EnumType.STRING)
+    private LeaveStatus leaveStatus;
 
     @Column(nullable = false)
     private LocalDateTime startDate;

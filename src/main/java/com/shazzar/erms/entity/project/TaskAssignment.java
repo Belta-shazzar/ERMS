@@ -1,6 +1,7 @@
 package com.shazzar.erms.entity.project;
 
 import com.shazzar.erms.entity.employee.Employee;
+import com.shazzar.erms.entity.project.enumerations.TaskAssignmentStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -37,8 +38,8 @@ public class TaskAssignment {
     @Column
     private String description;
 
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private TaskAssignmentStatus status;
 
     @Column
     private LocalDateTime startDate;

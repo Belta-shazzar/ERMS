@@ -1,9 +1,7 @@
 package com.shazzar.erms.entity.asset;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.shazzar.erms.entity.asset.enumerations.AssetStatus;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -39,8 +37,8 @@ public class Asset {
     @Column
     private String location;
 
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AssetStatus status;
 
 
 

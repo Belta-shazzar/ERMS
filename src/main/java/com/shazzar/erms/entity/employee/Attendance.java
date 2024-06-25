@@ -1,5 +1,6 @@
 package com.shazzar.erms.entity.employee;
 
+import com.shazzar.erms.entity.employee.enumerations.AttendanceStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,13 @@ public class Attendance {
     private Employee employee;
 
     @Column
-    private LocalDateTime date;
+    private LocalDateTime arrivalTime;
+
+    @Column
+    private LocalDateTime departureTime;
+
+    @Enumerated(EnumType.STRING)
+    private AttendanceStatus status;
 
     @Override
     public final boolean equals(Object o) {
