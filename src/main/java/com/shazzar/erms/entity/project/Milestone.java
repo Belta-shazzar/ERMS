@@ -1,55 +1,34 @@
-package com.shazzar.erms.entity.employee;
+package com.shazzar.erms.entity.project;
 
-import com.shazzar.erms.entity.project.TaskAssignment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class Employee {
+public class Milestone {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String phoneNumber;
-
-    private String position;
+    @Column
+    private String description;
 
     @ManyToOne
     @JoinColumn(
             nullable = false,
-            name = "team_id",
+            name = "project_id",
             referencedColumnName = "id")
-    private Team team;
+    private Project project;
 
-    @Column(nullable = false)
-    private LocalDateTime hireDate;
-
-    @Column(nullable = false)
-    private BigDecimal salary;
-
-    @ManyToMany
-    @ToString.Exclude
-    private Set<TaskAssignment> assignment;
+    @Column
+    private LocalDateTime dueDate;
 
     @Override
     public final boolean equals(Object o) {
@@ -58,8 +37,8 @@ public class Employee {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Employee employee = (Employee) o;
-        return getId() != null && Objects.equals(getId(), employee.getId());
+        Milestone milestone = (Milestone) o;
+        return getId() != null && Objects.equals(getId(), milestone.getId());
     }
 
     @Override
